@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Outfit:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ... */
+
+@layer base {
+  :root {
+
+    --radius: 0.5rem
+  }
+}
+:root {
+  --chart-1: 220, 90%, 56%; /* Replace with your desired color */
+  --chart-2: 160, 90%, 56%; /* Replace with your desired color */
+}
