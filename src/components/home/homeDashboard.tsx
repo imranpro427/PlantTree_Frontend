@@ -85,7 +85,7 @@ const LocationChart = () => {
 
       </div>
 	  <div className=" pt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
-		<div className=" bg-white shadow-md rounded-lg p-4 w-full">
+		<div className=" bg-white shadow-md rounded-lg p-4 w-full h-72 ">
 			<div className=" text-center text-lg font-medium mb-4">Temperature for all locations</div>
 			<TemperatureChart data={sensorData} />
 		</div>

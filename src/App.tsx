@@ -21,8 +21,8 @@ function App() {
     <Router>
       <Routes>
         {/* Route for HomePage */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Charts />} />
+        <Route path="/home" element={<Charts />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </Router>
       

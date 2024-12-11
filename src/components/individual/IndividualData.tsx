@@ -64,7 +64,7 @@ const IndividualData = ({ data }) => {
     y: {
       display: true, // Hide y-axis labels
     },
-  },
+  }, 
 };
 
   // Suggestions based on data
@@ -79,14 +79,20 @@ const IndividualData = ({ data }) => {
     <div>
       <div className="header flex justify-between px-4">
         <h2>Individual Data</h2>
-        <div className="filters">
-          <select value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}>
+        <div className="filters md:space-x-4">
+          <select
+            value={selectedLocation}
+            onChange={(e) => setSelectedLocation(e.target.value)}
+            className="w-[180px] p-2 border rounded-md"
+          >
+            <option value="" disabled>Select a Location</option>
             <option value="New Karachi">New Karachi</option>
             <option value="Scheme 33">Scheme 33</option>
             <option value="Shah Faisal">Shah Faisal</option>
             <option value="Fast Uni">Fast Uni</option>
           </select>
-          <select value={selectedTimeRange} onChange={(e) => setSelectedTimeRange(e.target.value)}>
+
+          <select className="w-[180px] p-2 border rounded-md" value={selectedTimeRange} onChange={(e) => setSelectedTimeRange(e.target.value)}>
             <option value="1 Day">1 Day</option>
             <option value="1 Week">1 Week</option>
             <option value="1 Month">1 Month</option>

@@ -41,19 +41,20 @@ const TemperatureChart = ({ data }) => {
   const location3Data = filteredData.filter(sens => sens.location === "Fast Uni");
   const location4Data = filteredData.filter(sens => sens.location === "Shah Faisal");
 
+  
   // Prepare chart data
   const chartData = {
     labels: location1Data.map(entry => moment.utc(entry.timestamp).format("YYYY-MM-DD HH:mm:ss")),
     datasets: [
       {
-        label: "Scheme33 Temperature",
+        label: "Scheme 33",
         data: location1Data.map(entry => entry.temperature),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         fill: true,
       },
       {
-        label: "NewKarachi Temperature",
+        label: "New Karachi",
         data: location2Data.map(entry => entry.temperature),
         borderColor: 'rgb(4, 115, 133)',
         backgroundColor: 'rgba(4, 115, 133, 0.2)',

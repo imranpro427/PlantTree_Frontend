@@ -44,6 +44,8 @@ const HumidityChart = ({data}) => {
 	const location3Data = filteredData.filter(sens=> sens.location === "Fast Uni")
 	const location4Data = filteredData.filter(sens=> sens.location === "Shah Faisal")
 	
+	
+
 	const chartData = {
 		labels: location1Data.map((entry)=>moment.utc(entry.timestamp).format("YYYY-MM-DD HH:mm:ss")),
 		datasets:[
