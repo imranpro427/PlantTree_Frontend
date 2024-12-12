@@ -1,4 +1,5 @@
-import * as React from 'react';
+// @ts-nocheck
+import React from 'react';
 import {useEffect,useState} from 'react';
 import axios from "axios";
 import TemperatureChart from './TemperatureChart';

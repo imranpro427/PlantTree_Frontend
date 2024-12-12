@@ -11,7 +11,10 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node16", 
+    "module": "Node16",
     "baseUrl": ".",
+    "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]

@@ -1,5 +1,5 @@
 //@ts-nocheck
-import * as React from 'react';
+import React from 'react';
 import { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Filler } from 'chart.js';

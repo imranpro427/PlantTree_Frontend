@@ -1,5 +1,5 @@
 //@ts-nocheck
-import * as React from "react";
+import  React from "react";
 import { useMemo } from "react";
 import { useTable, usePagination } from "react-table";
 import { MdNavigateNext } from "react-icons/md";
