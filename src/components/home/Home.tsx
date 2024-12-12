@@ -45,7 +45,7 @@ const App: React.FC = () => {
               <li
                 key={item.name}
                 onClick={() => handleItemClick(item.name)}
-                className={`group relative flex justify-center items-center p-2 md:rounded-md hover:bg-brightGreen cursor-pointer 
+                className={`group relative flex justify-center items-center p-2 md:rounded-md hover:scale-125 hover:bg-brightGreen cursor-pointer 
                 ${activeMenu === item.name ? "bg-brightGreen" : ""} transform transition-all duration-200 ease-in-out`}
               >
                 <span className="text-2xl md:text-3xl text-white">{item.icon}</span>

@@ -15,3 +15,32 @@
   --chart-1: 220, 90%, 56%; /* Replace with your desired color */
   --chart-2: 160, 90%, 56%; /* Replace with your desired color */
 }
+
+
+
+/* Custom Scrollbar for Webkit Browsers (Chrome, Safari, etc.) */
+html {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #4caf50 #f1f1f1; /* Thumb color, Track color */
+}
+
+/* For Webkit Browsers */
+body::-webkit-scrollbar {
+  width: 4px; /* Scrollbar ki width */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Thumb color */
+  border-radius: 10px; /* Rounded corners */
+  transition: background-color 0.3s ease, width 0.3s ease; /* Animation effect */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #388e3c; /* Thumb color on hover */
+  width: 16px; /* Scrollbar ko wide karne ka effect jab hover karein */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Track color */
+  border-radius: 10px; /* Rounded corners */
+}

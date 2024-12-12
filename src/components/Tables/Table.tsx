@@ -1,10 +1,13 @@
 //@ts-nocheck
-import * as React from 'react';
-import { useMemo } from 'react';
-import { useTable, usePagination } from 'react-table';
+import * as React from "react";
+import { useMemo } from "react";
+import { useTable, usePagination } from "react-table";
 import { MdNavigateNext } from "react-icons/md";
 import { BiLastPage, BiFirstPage } from "react-icons/bi";
 import { GrFormPrevious } from "react-icons/gr";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import {
   Select,
   SelectContent,
@@ -13,32 +16,46 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+function SkeletonRow({ columns }) {
+  return (
+    <tr>
+      {Array.from({ length: columns }).map((_, index) => (
+        <td key={index}>
+          <Skeleton height={20} />
+        </td>
+      ))}
+    </tr>
+  );
+}
+
 export default function Table({ data }) {
   const columns = useMemo(
     () => [
       {
-        Header: 'Location',
-        accessor: 'location',
+        Header: "Location",
+        accessor: "location",
       },
       {
-        Header: 'Temperature (°C)',
-        accessor: 'temperature',
+        Header: "Temperature (°C)",
+        accessor: "temperature",
       },
       {
-        Header: 'Humidity (%)',
-        accessor: 'humidity',
+        Header: "Humidity (%)",
+        accessor: "humidity",
       },
       {
-        Header: 'Air Quality (mq135)',
-        accessor: 'mq135',
+        Header: "Air Quality (mq135)",
+        accessor: "mq135",
       },
       {
-        Header: 'Timestamp',
-        accessor: 'timestamp',
+        Header: "Timestamp",
+        accessor: "timestamp",
       },
     ],
     []
   );
+
+  const loading = !data || data.length === 0;
 
   const {
     getTableProps,
@@ -62,8 +79,11 @@ export default function Table({ data }) {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6 bg-gray-50 shadow-lg rounded-lg">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-4">Report Overview</h1>
+      <h1 className="text-2xl font-semibold text-gray-800 mb-4">
+        Report Overview
+      </h1>
       <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+        {/* Pagination Controls */}
         <div className="flex items-center space-x-2">
           <button
             onClick={() => gotoPage(0)}
@@ -95,6 +115,7 @@ export default function Table({ data }) {
           </button>
         </div>
 
+        {/* Page Size Selector */}
         <div className="flex items-center space-x-2">
           <span className="text-sm text-gray-700">
             Page {pageIndex + 1} of {pageOptions.length}
@@ -112,8 +133,9 @@ export default function Table({ data }) {
           />
         </div>
 
+        {/* Filter */}
         <div className="flex items-center space-x-2">
-          <div className=' text-sm'>Filter</div>
+          <div className="text-sm">Filter</div>
           <Select
             value={pageSize}
             onValueChange={(e) => setPageSize(Number(e))}
@@ -132,12 +154,14 @@ export default function Table({ data }) {
           </Select>
         </div>
       </div>
+
+      {/* Table with Skeleton Loader */}
       <div className="overflow-x-auto">
         <table
           {...getTableProps()}
-          className="min-w-full divide-y  divide-gray-200 border-none"
+          className="min-w-full divide-y divide-gray-200 border-none"
         >
-          <thead className=" bg-darkGreen text-white">
+          <thead className="bg-darkGreen text-white">
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
@@ -145,7 +169,7 @@ export default function Table({ data }) {
                     {...column.getHeaderProps()}
                     className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border border-gray-200"
                   >
-                    {column.render('Header')}
+                    {column.render("Header")}
                   </th>
                 ))}
               </tr>
@@ -155,21 +179,25 @@ export default function Table({ data }) {
             {...getTableBodyProps()}
             className="bg-white divide-y divide-gray-200"
           >
-            {page.map((row) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()} className="hover:bg-gray-100">
-                  {row.cells.map((cell) => (
-                    <td
-                      {...cell.getCellProps()}
-                      className="px-6 py-4 text-sm text-gray-700 border border-gray-300"
-                    >
-                      {cell.render('Cell')}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
+            {loading
+              ? Array.from({ length: 10 }).map((_, index) => (
+                  <SkeletonRow key={index} columns={columns.length} />
+                ))
+              : page.map((row) => {
+                  prepareRow(row);
+                  return (
+                    <tr {...row.getRowProps()} className="hover:bg-gray-100">
+                      {row.cells.map((cell) => (
+                        <td
+                          {...cell.getCellProps()}
+                          className="px-6 py-4 text-sm text-gray-700 border border-gray-300"
+                        >
+                          {cell.render("Cell")}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
           </tbody>
         </table>
       </div>
